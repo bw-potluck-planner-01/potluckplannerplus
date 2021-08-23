@@ -4,9 +4,9 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run",
+    "migrate": "npx knex migrate:latest",
+    "rollback": "npx knex migrate:rollback",
+    "seed": "npx knex seed:run",
     "migrateh": "heroku run knex migrate:latest -a potluckplannerplus",
     "rollbackh": "heroku run knex migrate:rollback -a potluckplannerplus",
     "databaseh": "heroku pg:psql -a potluckplannerplus",
