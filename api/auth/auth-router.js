@@ -56,7 +56,7 @@ router.post('/login', checkRequest, validateCredentials, async (req, res, next) 
         const { username } = req.body
         const organizer = await Auth.findByUsername(username)
         const token = createToken(organizer)
-        res.status(200).json({ message: `Welcome back, ${organizer.username}`, token})
+        res.status(200).json({ message: `Welcome back, ${organizer.username}`, token, organizer_id: organizer.organizer_id})
     } catch(err) {
         next()
     }
