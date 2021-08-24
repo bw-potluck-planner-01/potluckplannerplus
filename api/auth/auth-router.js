@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken')
 
 const router = express.Router()
 
+const checkRequest = require('../middleware/checkRequest')
+const checkUsernameUnique = require('../middleware/checkUsernameUnique')
+const validateCredentials = require('../middleware/validateCredentials')
+
 const Auth = require('./auth-model')
 
 const { TOKEN_SECRET } = require('../config/secret')
@@ -22,10 +26,10 @@ const createToken = (organizer) => {
     return jwt.sign(payload, TOKEN_SECRET, options)
 }
 
-router.post('/register', async (req, res, next) => {
+router.post('/register', checkRequest, checkUsernameUnique, async (req, res, next) => {
     try {
         const { username, password } = req.body
-        const hash = bcrypt.hashSync(password, 8)
+        const hash = bcrypt.hashSync(password, HASH_ROUNDS)
         const organizer = {
             username: username,
             password: hash
@@ -37,7 +41,7 @@ router.post('/register', async (req, res, next) => {
     }
 })
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', checkRequest, validateCredentials, async (req, res, next) => {
     try {
         const { username } = req.body
         const organizer = await Auth.findByUsername(username)
