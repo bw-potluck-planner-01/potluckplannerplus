@@ -7,6 +7,7 @@ const router = express.Router()
 const checkRequest = require('../middleware/checkRequest')
 const checkUsernameUnique = require('../middleware/checkUsernameUnique')
 const validateCredentials = require('../middleware/validateCredentials')
+const restrict = require('../middleware/restrict')
 
 const Auth = require('./auth-model')
 
@@ -25,6 +26,15 @@ const createToken = (organizer) => {
 
     return jwt.sign(payload, TOKEN_SECRET, options)
 }
+
+router.get('/organizers', restrict,  async (req, res, next) => {
+    try {
+        const organizers = await Auth.getOrganizers()
+        res.status(200).json(organizers)
+    } catch(err) {
+        next(err)
+    }
+})
 
 router.post('/register', checkRequest, checkUsernameUnique, async (req, res, next) => {
     try {

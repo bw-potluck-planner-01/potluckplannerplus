@@ -23,3 +23,8 @@ https://potluckplannerplus.herokuapp.com/ is the base URL for this API
     token: 'token'
 }
 
+// Restricted Endpoint
+
+[GET] /auth/organizers - requires a valid token in authorization header
+returns an array of organizers currently in database
+
