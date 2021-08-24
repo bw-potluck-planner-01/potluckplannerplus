@@ -2,6 +2,8 @@ Welcome To PotluckPLannerPlus' API!
 
 https://potluckplannerplus.herokuapp.com/ is the base URL for this API
 
+// Auth Router
+
 [POST] /auth/register - requires a unique username and password as such-
 {
     username: 'foo',
@@ -23,10 +25,12 @@ https://potluckplannerplus.herokuapp.com/ is the base URL for this API
     token: 'token'
 }
 
-// Restricted Endpoints
+// Auth Restricted Endpoints
 
 [GET] /auth/organizers - requires a valid token in authorization header
 returns an array of organizers currently in database
+
+// Organizer Router - Restricted
 
 [GET] /org/:id/potlucks - requires a valid organizer id in params
 returns an array of potlucks by given organizer_id
@@ -45,4 +49,12 @@ returns an array of potlucks by given organizer_id
     "time": "18:00:00",
     "location": "My House"
 }
+
+// Potluck Router
+
+[GET] /potlucks
+returns an array of all potlucks currently in database
+
+[GET] /potlucks/:id - requires a valid potluck_id in params
+returns a potluck by given id
 

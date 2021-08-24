@@ -7,6 +7,7 @@ const server = express()
 
 const authRouter = require('./auth/auth-router')
 const orgRouter = require('./organizers/org-router')
+const potluckRouter = require('./potlucks/potluck-router')
 
 server.use(express.json())
 server.use(helmet())
@@ -14,6 +15,7 @@ server.use(cors())
 
 server.use('/auth', authRouter)
 server.use('/org', restrict, orgRouter)
+server.use('/potlucks', potluckRouter)
 
 // Catch-All Error Handler
 
