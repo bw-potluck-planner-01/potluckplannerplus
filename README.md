@@ -59,4 +59,23 @@ returns an array of all potlucks currently in database
 returns a potluck by given id
 
 [GET] /potlucks/:id/menu - requires a valid potluck_id in params
-returns an array of the potluck menu by given id
+returns an array of the potluck menu by given id with food_item of the shape -
+
+[
+    {
+        'food_item_id': 1,
+        'food_item': 'Cheese'
+    },
+    etc...
+]
+
+[GET] /potlucks/:id/guests - requires a valid potluck_id in params
+returns an array of the potluck guest list by given id with guest of the shape -
+
+[
+    {
+        'guest_id': 1,
+        'guest_name': 'foo',
+        'attending': false
+    }
+]

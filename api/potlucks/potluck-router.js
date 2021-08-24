@@ -33,5 +33,14 @@ router.get('/:id/menu', async (req, res, next) => {
     }
 })
 
+router.get('/:id/guests', async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const guests = await Potluck.getPotluckGuests(id)
+        res.status(200).json(guests)
+    } catch(err) {
+        next(err)
+    }
+})
 
 module.exports = router

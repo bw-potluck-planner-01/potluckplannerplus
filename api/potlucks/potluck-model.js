@@ -19,8 +19,18 @@ const getPotluckMenu = async (potluck_id) => {
     return menu
 }
 
+const getPotluckGuests = async (potluck_id) => {
+    const guests = await db('potlucks as p')
+                        .join('guests as g', 'g.potluck_id', 'p.potluck_id')
+                        .select('guest_id', 'guest_name', 'attending')
+                        .where('g.potluck_id', potluck_id)
+                        .orderBy('guest_id')
+    return guests
+}
+
 module.exports = {
     getAllPotlucks,
     getPotluckById,
-    getPotluckMenu
+    getPotluckMenu,
+    getPotluckGuests
 }
