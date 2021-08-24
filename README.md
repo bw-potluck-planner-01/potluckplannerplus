@@ -31,3 +31,18 @@ returns an array of organizers currently in database
 [GET] /org/:id/potlucks - requires a valid organizer id in params
 returns an array of potlucks by given organizer_id
 
+[POST] /org/:id - requires valid organizer id in params, unique potluck name, and valid date/time/location as such -
+{
+    "potluck_name": "Thanksgiving",
+    "date": "Nov 25, 2021",
+    "time": "18:00",
+    "location": "My House"
+} returns newly created potluck as such -
+{
+    "organizer_id": 1,
+    "potluck_name": "Thanksgiving",
+    "date": "2021-11-25T08:00:00.000Z",
+    "time": "18:00:00",
+    "location": "My House"
+}
+
