@@ -45,7 +45,7 @@ router.get('/:id/guests', async (req, res, next) => {
     }
 })
 
-router.put('/:id', restrict,  async (req, res, next) => {
+router.put('/:id', restrict, async (req, res, next) => {
     try {
         const { id } = req.params
         const newPotluck = await Potluck.updatePotluck(id, req.body)

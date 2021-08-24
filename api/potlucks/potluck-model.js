@@ -29,7 +29,7 @@ const getPotluckGuests = async (potluck_id) => {
 }
 
 const updatePotluck = async (potluck_id, potluck) => {
-    const [newPotluck] = await db('potlucks').where('potluck_id', potluck_id).update(potluck)
+    const [newPotluck] = await db('potlucks').where('potluck_id', potluck_id).update(potluck, ['organizer_id', 'potluck_name', 'date', 'time', 'location'])
     return newPotluck
 }
 
