@@ -4,6 +4,8 @@ const router = express.Router()
 
 const Potluck = require('./potluck-model')
 
+const restrict = require('../middleware/restrict')
+
 router.get('/', async (req, res, next) => {
     try {
         const potlucks = await Potluck.getAllPotlucks()
@@ -42,5 +44,16 @@ router.get('/:id/guests', async (req, res, next) => {
         next(err)
     }
 })
+
+router.put('/:id', restrict,  async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const newPotluck = await Potluck.updatePotluck(id, req.body)
+        res.status(200).json(newPotluck)
+    } catch(err) {
+        next(err)
+    }
+})
+
 
 module.exports = router

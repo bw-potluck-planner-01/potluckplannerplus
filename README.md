@@ -79,3 +79,22 @@ returns an array of the potluck guest list by given id with guest of the shape -
         'attending': false
     }
 ]
+
+//Potluck Restricted Endpoints
+
+[PUT] /potlucks/:id - requires a valid potluck_id in params, valid potluck body as such -
+
+{
+    "organizer_id": 1,
+    "potluck_name": "Thanksgiving",
+    "date": "2021-11-25T08:00:00.000Z",
+    "time": "18:00:00",
+    "location": "My House"
+} - returns newly updated potluck object as such -
+{
+    "organizer_id": 1,
+    "potluck_name": "Christmas",
+    "date": "2021-11-25T08:00:00.000Z",
+    "time": "18:00:00",
+    "location": "My House"
+}

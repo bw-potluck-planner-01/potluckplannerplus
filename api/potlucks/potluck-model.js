@@ -28,9 +28,15 @@ const getPotluckGuests = async (potluck_id) => {
     return guests
 }
 
+const updatePotluck = async (potluck_id, potluck) => {
+    const [newPotluck] = await db('potlucks').where('potluck_id', potluck_id).update(potluck)
+    return newPotluck
+}
+
 module.exports = {
     getAllPotlucks,
     getPotluckById,
     getPotluckMenu,
-    getPotluckGuests
+    getPotluckGuests,
+    updatePotluck
 }
