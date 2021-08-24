@@ -11,7 +11,7 @@ const validateCredentials = require('../middleware/validateCredentials')
 const Auth = require('./auth-model')
 
 const { TOKEN_SECRET } = require('../config/secret')
-const HASH_ROUNDS = process.env.HASH_ROUNDS || 8
+// const HASH_ROUNDS = process.env.HASH_ROUNDS || 8
 
 const createToken = (organizer) => {
     const payload = {
@@ -29,7 +29,7 @@ const createToken = (organizer) => {
 router.post('/register', checkRequest, checkUsernameUnique, async (req, res, next) => {
     try {
         const { username, password } = req.body
-        const hash = bcrypt.hashSync(password, HASH_ROUNDS)
+        const hash = bcrypt.hashSync(password, 8)
         const organizer = {
             username: username,
             password: hash

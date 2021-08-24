@@ -1,7 +1,7 @@
 const db = require('../data/db-config')
 
 const registerOrganizer = async (organizer) => {
-    const [newOrganizer] = await db('organizers').insert(organizer)
+    const newOrganizer = await db('organizers').insert(organizer, ['organizer_id', 'username', 'password'])
     return newOrganizer
 }
 

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 module.exports = async (req, res, next) => {
     const { username, password } = req.body
-    const organizer = await Auth.findBy(username)
+    const organizer = await Auth.findByUsername(username)
     if(organizer && bcrypt.compareSync(password, organizer.password)) {
         next()
     } else {
