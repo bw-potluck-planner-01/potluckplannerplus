@@ -58,3 +58,5 @@ returns an array of all potlucks currently in database
 [GET] /potlucks/:id - requires a valid potluck_id in params
 returns a potluck by given id
 
+[GET] /potlucks/:id/menu - requires a valid potluck_id in params
+returns an array of the potluck menu by given id
