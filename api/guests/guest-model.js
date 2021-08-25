@@ -5,12 +5,13 @@ const updateGuest = async (guest_id, guest) => {
     return newGuest
 }
 
-const updateMenu = async (food_item_id, food_item) => {
-    const [newFood_Item] = await db('food_items').where('food_item_id', food_item_id).update(food_item)
-    return newFood_Item
+const deleteGuest = async (guest_id) => {
+    await db('guests').where('guest_id', guest_id).del()
+    return
 }
+
 
 module.exports = {
     updateGuest,
-    updateMenu
+    deleteGuest
 }

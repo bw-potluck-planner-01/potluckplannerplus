@@ -134,3 +134,11 @@ returns a newly updated guest body
 
 [DELETE] /guests/:id - requires a valid guest id in params
 returns a deleted message
+
+// Menu Router
+
+[PUT] /menu/:id - requires a valid food_item id in params, valid food_item body
+returns a newly updated food_item body
+
+[DELETE] /menu/:id - requires a valid food_item id in params
+returns a deleted message
