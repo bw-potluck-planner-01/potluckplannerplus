@@ -23,6 +23,7 @@ exports.up = async (knex) => {
       guests.increments('guest_id')
       guests.string('guest_name', 128).notNullable()
       guests.boolean('attending').defaultTo(false)
+      guests.string('bringing', 128)
       guests.integer('potluck_id')
             .unsigned()
             .notNullable()
@@ -34,6 +35,7 @@ exports.up = async (knex) => {
     .createTable('food_items', (food_items) => {
       food_items.increments('food_item_id')
       food_items.string('food_item', 128).notNullable()
+      food_items.boolean('chosen').defaultTo(false)
       food_items.integer('potluck_id')
                 .unsigned()
                 .notNullable()
@@ -42,28 +44,10 @@ exports.up = async (knex) => {
                 .onUpdate('CASCADE')
                 .onDelete('RESTRICT')
     })
-    .createTable('guest_food_items', (guest_food_items) => {
-      guest_food_items.increments('guest_food_item_id')
-      guest_food_items.integer('food_item_id')
-                .unsigned()
-                .notNullable()
-                .references('food_item_id')
-                .inTable('food_items')
-                .onUpdate('CASCADE')
-                .onDelete('RESTRICT')
-      guest_food_items.integer('guest_id')
-                .unsigned()
-                .notNullable()
-                .references('guest_id')
-                .inTable('guests')
-                .onUpdate('CASCADE')
-                .onDelete('RESTRICT')
-    })
 }
 
 exports.down = async (knex) => {
   await knex.schema
-            .dropTableIfExists('guest_food_items')
             .dropTableIfExists('food_items')
             .dropTableIfExists('guests')
             .dropTableIfExists('potlucks')
