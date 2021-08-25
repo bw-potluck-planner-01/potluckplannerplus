@@ -22,7 +22,7 @@ const getPotluckMenu = async (potluck_id) => {
 const getPotluckGuests = async (potluck_id) => {
     const guests = await db('potlucks as p')
                         .join('guests as g', 'g.potluck_id', 'p.potluck_id')
-                        .select('guest_id', 'guest_name', 'attending')
+                        .select('guest_id', 'guest_name', 'attending', 'g.potluck_id')
                         .where('g.potluck_id', potluck_id)
                         .orderBy('guest_id')
     return guests
@@ -33,10 +33,16 @@ const updatePotluck = async (potluck_id, potluck) => {
     return newPotluck
 }
 
+const addGuest = async (guest) => {
+    const [newGuest] = await db('guests').insert(guest, ['guest_id', 'guest_name', 'attending', 'potluck_id'])
+    return newGuest
+}
+
 module.exports = {
     getAllPotlucks,
     getPotluckById,
     getPotluckMenu,
     getPotluckGuests,
-    updatePotluck
+    updatePotluck,
+    addGuest
 }

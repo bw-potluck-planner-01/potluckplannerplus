@@ -55,5 +55,19 @@ router.put('/:id', restrict, async (req, res, next) => {
     }
 })
 
+router.post('/:id/guests', restrict, async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const newGuest = {
+            ...req.body,
+            potluck_id: id
+        }
+        const guest = await Potluck.addGuest(newGuest)
+        res.status(200).json(guest)
+    } catch(err) {
+        next(err)
+    }
+})
+
 
 module.exports = router

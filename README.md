@@ -86,7 +86,7 @@ returns an array of the potluck guest list by given id with guest of the shape -
 
 {
     "organizer_id": 1,
-    "potluck_name": "Thanksgiving",
+    "potluck_name": "Christmas",
     "date": "2021-11-25T08:00:00.000Z",
     "time": "18:00:00",
     "location": "My House"
@@ -97,4 +97,17 @@ returns an array of the potluck guest list by given id with guest of the shape -
     "date": "2021-11-25T08:00:00.000Z",
     "time": "18:00:00",
     "location": "My House"
+}
+
+[POST] /potlucks/:id/guests - requires a valid potluck_id in params, valid guest body as such -
+
+{
+    "guest_name": 'foo'
+}
+returns a newly created guest object as such -
+{
+    'guest_id': 1,
+    'guest_name': 'foo',
+    'attending': false,
+    'potluck_id': 1
 }
