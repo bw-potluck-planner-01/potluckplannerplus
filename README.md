@@ -30,6 +30,9 @@ https://potluckplannerplus.herokuapp.com/ is the base URL for this API
 [GET] /auth/organizers - requires a valid token in authorization header
 returns an array of organizers currently in database
 
+[GET] /auth/logout - requires a valid token in authorization header
+returns a logout message
+
 // Organizer Router - Restricted
 
 [GET] /org/:id/potlucks - requires a valid organizer id in params
