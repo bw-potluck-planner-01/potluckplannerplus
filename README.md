@@ -111,3 +111,15 @@ returns a newly created guest object as such -
     'attending': false,
     'potluck_id': 1
 }
+
+[POST] /potlucks/:id/menu - requires a valid potluck_id in params, valid food_item body as such -
+
+{
+    "food_item": 'foo'
+}
+returns a newly created food_item object as such -
+{
+    'food_item_id': 1,
+    'food_item': 'foo',
+    'potluck_id': 1
+}

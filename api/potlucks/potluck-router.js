@@ -69,5 +69,19 @@ router.post('/:id/guests', restrict, async (req, res, next) => {
     }
 })
 
+router.post('/:id/menu', restrict, async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const newFood_Item = {
+            ...req.body,
+            potluck_id: id
+        }
+        const food_item = await Potluck.addGuest(newFood_Item)
+        res.status(200).json(food_item)
+    } catch(err) {
+        next(err)
+    }
+})
+
 
 module.exports = router

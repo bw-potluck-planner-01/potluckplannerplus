@@ -38,11 +38,17 @@ const addGuest = async (guest) => {
     return newGuest
 }
 
+const addFoodItem = async (food_item) => {
+    const [newFood_Item] = await db('food_items').insert(food_item, ['food_item_id', 'food_item', 'potluck_id'])
+    return newFood_Item
+}
+
 module.exports = {
     getAllPotlucks,
     getPotluckById,
     getPotluckMenu,
     getPotluckGuests,
     updatePotluck,
-    addGuest
+    addGuest,
+    addFoodItem
 }
