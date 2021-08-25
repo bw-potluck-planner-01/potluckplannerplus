@@ -62,4 +62,16 @@ router.post('/login', checkRequest, validateCredentials, async (req, res, next) 
     }
 })
 
+router.get('/logout', restrict, (req, res, next) => {
+    const token = req.headers.authorization
+    jwt.sign(token, '', { expiresIn: '1s' }, (err, logout) => {
+        if(err) {
+            next({ status: 500, message: 'Could not log you out.'})
+        } else {
+            res.status(200).json({ message: 'You have been logged out. Catch ya next time!', logout})
+        }
+    })
+})
+
+
 module.exports = router
