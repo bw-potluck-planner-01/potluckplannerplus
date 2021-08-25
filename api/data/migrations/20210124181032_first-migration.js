@@ -8,8 +8,8 @@ exports.up = async (knex) => {
     .createTable('potlucks', (potlucks) => {
       potlucks.increments('potluck_id')
       potlucks.string('potluck_name', 128).unique().notNullable()
-      potlucks.date('date', 128).notNullable()
-      potlucks.time('time', 128).notNullable()
+      potlucks.string('date', 128).notNullable()
+      potlucks.string('time', 128).notNullable()
       potlucks.string('location', 256).notNullable()
       potlucks.integer("organizer_id")
               .unsigned()
@@ -17,7 +17,7 @@ exports.up = async (knex) => {
               .references('organizer_id')
               .inTable('organizers')
               .onUpdate('CASCADE')
-              .onDelete('RESTRICT')
+              .onDelete('CASCADE')
     })
     .createTable('guests', (guests) => {
       guests.increments('guest_id')
