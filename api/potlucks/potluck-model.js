@@ -33,6 +33,11 @@ const updatePotluck = async (potluck_id, potluck) => {
     return newPotluck
 }
 
+const deletePotluck = async (potluck_id) => {
+    await db('potlucks').where('potluck_id', potluck_id).del()
+    return
+}
+
 const addGuest = async (guest) => {
     const [newGuest] = await db('guests').insert(guest, ['guest_id', 'guest_name', 'attending', 'bringing', 'potluck_id'])
     return newGuest
@@ -50,5 +55,6 @@ module.exports = {
     getPotluckGuests,
     updatePotluck,
     addGuest,
-    addFoodItem
+    addFoodItem,
+    deletePotluck
 }

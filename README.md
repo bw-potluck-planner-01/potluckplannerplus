@@ -127,6 +127,9 @@ returns a newly created food_item object as such -
     'potluck_id': 1
 }
 
+[DELETE] /potlucks/:id - requires a valid potluck_id in params
+returns a deleted message
+
 // Guest Router
 
 [PUT] /guests/:id - requires a valid guest id in params, valid guest body

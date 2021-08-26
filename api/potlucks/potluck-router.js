@@ -83,4 +83,14 @@ router.post('/:id/menu', restrict, async (req, res, next) => {
     }
 })
 
+router.delete('/:id', restrict, async (req, res, next) => {
+    try {
+        const { id } = req.params
+        await Potluck.deletePotluck(id)
+        res.status(200).json({ message: 'Post has been deleted.'})
+    } catch(err) {
+        next(err)
+    }
+})
+
 module.exports = router
