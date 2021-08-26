@@ -4,7 +4,9 @@ const router = express.Router()
 
 const Org = require('./org-model')
 
-router.get('/:id/potlucks', async (req, res, next) => {
+const checkOrganizerExists = require("../middleware/checkOrganizerExists")
+
+router.get('/:id/potlucks', checkOrganizerExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const potlucks = await Org.getPotlucksByOrg(id)
@@ -14,7 +16,7 @@ router.get('/:id/potlucks', async (req, res, next) => {
     }
 })
 
-router.post('/:id', async (req, res, next) => {
+router.post('/:id', checkOrganizerExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const potluck = {
