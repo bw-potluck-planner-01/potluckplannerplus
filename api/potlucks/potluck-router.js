@@ -6,6 +6,8 @@ const Potluck = require('./potluck-model')
 
 const restrict = require('../middleware/restrict')
 
+const checkPotluckExists = require('../middleware/checkPotluckExists')
+
 router.get('/', async (req, res, next) => {
     try {
         const potlucks = await Potluck.getAllPotlucks()
@@ -15,7 +17,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', checkPotluckExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const potluck = await Potluck.getPotluckById(id)
@@ -25,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.get('/:id/menu', async (req, res, next) => {
+router.get('/:id/menu', checkPotluckExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const menu = await Potluck.getPotluckMenu(id)
@@ -35,7 +37,7 @@ router.get('/:id/menu', async (req, res, next) => {
     }
 })
 
-router.get('/:id/guests', async (req, res, next) => {
+router.get('/:id/guests', checkPotluckExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const guests = await Potluck.getPotluckGuests(id)
@@ -45,7 +47,7 @@ router.get('/:id/guests', async (req, res, next) => {
     }
 })
 
-router.put('/:id', restrict, async (req, res, next) => {
+router.put('/:id', restrict, checkPotluckExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const newPotluck = await Potluck.updatePotluck(id, req.body)
@@ -55,7 +57,7 @@ router.put('/:id', restrict, async (req, res, next) => {
     }
 })
 
-router.post('/:id/guests', restrict, async (req, res, next) => {
+router.post('/:id/guests', restrict, checkPotluckExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const newGuest = {
@@ -69,7 +71,7 @@ router.post('/:id/guests', restrict, async (req, res, next) => {
     }
 })
 
-router.post('/:id/menu', restrict, async (req, res, next) => {
+router.post('/:id/menu', restrict, checkPotluckExists, async (req, res, next) => {
     try {
         const { id } = req.params
         const newFood_Item = {
@@ -83,7 +85,7 @@ router.post('/:id/menu', restrict, async (req, res, next) => {
     }
 })
 
-router.delete('/:id', restrict, async (req, res, next) => {
+router.delete('/:id', restrict, checkPotluckExists, async (req, res, next) => {
     try {
         const { id } = req.params
         await Potluck.deletePotluck(id)
