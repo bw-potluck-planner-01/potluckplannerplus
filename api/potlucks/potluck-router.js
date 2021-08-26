@@ -7,6 +7,7 @@ const Potluck = require('./potluck-model')
 const restrict = require('../middleware/restrict')
 
 const checkPotluckExists = require('../middleware/checkPotluckExists')
+const checkFood_ItemUnique = require('../middleware/checkFood_ItemUnique')
 
 router.get('/', async (req, res, next) => {
     try {
@@ -71,7 +72,7 @@ router.post('/:id/guests', restrict, checkPotluckExists, async (req, res, next) 
     }
 })
 
-router.post('/:id/menu', restrict, checkPotluckExists, async (req, res, next) => {
+router.post('/:id/menu', restrict, checkPotluckExists, checkFood_ItemUnique, async (req, res, next) => {
     try {
         const { id } = req.params
         const newFood_Item = {
