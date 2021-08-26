@@ -21,6 +21,12 @@ server.use('/potlucks', potluckRouter)
 server.use('/guests', guestsRouter)
 server.use('/menu', menuRouter)
 
+// Welcome API
+
+server.get('/', (req, res) => {
+  res.send({ message: `Welcome to the PotluckPlannerPlus API!`})
+})
+
 // Catch-All Error Handler
 
 server.use((err, req, res, next) => {
